@@ -4,11 +4,7 @@ from django.db import models
 from cl.lib.decorators import document_model
 from cl.lib.model_helpers import CSVExportMixin
 from cl.lib.models import AbstractDateTimeModel
-from cl.search.state.shared import (
-    AbstractStateDocument,
-    DocketEntryType,
-    state_pdf_path,
-)
+from cl.search.state.shared import AbstractStateDocument, DocketEntryType
 
 __all__ = ["FloridaDocketEntry", "FloridaDocument"]
 
@@ -158,6 +154,6 @@ class FloridaDocument(AbstractDateTimeModel, AbstractStateDocument):
 
     def get_pdf_path(self, filename: str, thumbs: bool = False) -> str:
         """Store Florida ACIS documents under the shared state layout."""
-        return state_pdf_path(
+        return self.state_pdf_path(
             "fl", self.docket_entry.docket.court_id, filename, thumbs
         )

@@ -13,11 +13,7 @@ from cl.lib.models import AbstractDateTimeModel
 
 __all__ = ["TexasDocketEntry", "TexasDocument"]
 
-from cl.search.state.shared import (
-    AbstractStateDocument,
-    ProcessingError,
-    state_pdf_path,
-)
+from cl.search.state.shared import AbstractStateDocument, ProcessingError
 
 logger = logging.getLogger(__name__)
 
@@ -143,6 +139,6 @@ class TexasDocument(AbstractDateTimeModel, AbstractStateDocument):
 
     def get_pdf_path(self, filename: str, thumbs: bool = False) -> str:
         """Store TAMES documents under the shared state layout."""
-        return state_pdf_path(
+        return self.state_pdf_path(
             "tx", self.docket_entry.docket.court_id, filename, thumbs
         )
