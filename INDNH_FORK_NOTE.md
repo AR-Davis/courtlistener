@@ -4,7 +4,7 @@ This is a fork of [freelawproject/courtlistener](https://github.com/freelawproje
 
 ## Why this fork exists
 
-We do **not** modify the CourtListener codebase itself. This fork is used only for:
+We do **not** modify the CourtListener codebase itself. The dashboard uses this data for general InDepthNH reporting, not only Executive Council accountability stories. This fork is used only for:
 
 1. **Scheduling a daily sync** from CourtListener to the InDepthNH dashboard via GitHub Actions.
 2. **Storing workflow files** under `.github/workflows/` that call the InDepthNH dashboard API.
