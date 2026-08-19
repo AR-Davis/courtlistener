@@ -17,7 +17,7 @@ jobs:
             -d '{}' \
             https://dashboard.aaronrdavis.news/api/court-listener/sync)
           echo "$RESPONSE"
-          if echo "$RESPONSE" | grep -q '"error"'; then
-            echo "Sync reported an error"
+          if ! echo "$RESPONSE" | grep -q '"summary"'; then
+            echo "Sync endpoint did not return a summary"
             exit 1
           fi
