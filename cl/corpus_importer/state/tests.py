@@ -547,7 +547,10 @@ class BaseMergerTest(TestCase):
             {"Alice"},
         )
 
-    @merger_test(expected_query_count=15)
+    # The count tracks the number of models with a relation to Party: deleting
+    # the stale one makes Django's collector visit each of them. Adding a new
+    # model that points at Party costs one more query here.
+    @merger_test(expected_query_count=16)
     def test_related_mergers_m2m_through_replace_deletes(self) -> None:
         """Characterization: does REPLACE on a through many-to-many delete
         the stale related objects outright?"""
