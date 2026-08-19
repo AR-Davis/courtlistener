@@ -1,0 +1,23 @@
+name: Daily CourtListener Sync
+
+on:
+  schedule:
+    - cron: '0 6 * * *'   # 6 AM UTC daily
+  workflow_dispatch:        # Allow manual trigger
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sync CourtListener watches
+        run: |
+          RESPONSE=$(curl -sS -X POST \
+            -H "X-Cron-Secret: ${{ secrets.INDNH_CRON_SECRET }}" \
+            -H "Content-Type: application/json" \
+            -d '{}' \
+            https://dashboard.aaronrdavis.news/api/court-listener/sync)
+          echo "$RESPONSE"
+          if echo "$RESPONSE" | grep -q '"error"'; then
+            echo "Sync reported an error"
+            exit 1
+          fi
