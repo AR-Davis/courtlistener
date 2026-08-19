@@ -23,3 +23,7 @@ We will not submit pull requests from this fork unless we find a genuine bug or 
 
 
 Last updated: 2026-08-19
+
+## Removed upstream CI
+
+The original CourtListener repository includes many CI workflows (lint, docker build, tests, sentry, CodeQL, etc.). We removed those from this fork because they fail without Free Law Project's infrastructure and secrets. Only `.github/workflows/courtlistener-sync.yml` remains active.
