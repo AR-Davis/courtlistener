@@ -20,3 +20,6 @@ We do **not** modify the CourtListener codebase itself. The dashboard uses this 
 ## No upstream changes
 
 We will not submit pull requests from this fork unless we find a genuine bug or improvement to contribute back to Free Law Project.
+
+
+Last updated: 2026-08-19
